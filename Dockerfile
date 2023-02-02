@@ -13,9 +13,8 @@ RUN apk --no-cache add wget jq shadow &&\
   rm -rf linux-amd64 &&\
   apk --no-cache del wget jq
 
-# install gosu & kubectl
-RUN echo '@edge https://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories &&\
-  apk add --no-cache gosu@edge kubectl@edge
+# install gosu & kubectl from edge
+RUN apk add --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/edge/testing gosu kubectl
 
 # copy entrypoint
 COPY entrypoint.sh /entrypoint.sh
